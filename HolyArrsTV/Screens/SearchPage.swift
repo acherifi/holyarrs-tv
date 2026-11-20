@@ -65,9 +65,10 @@ struct SearchPage: View {
         searching = true
         defer { searching = false; searched = q }
         let enc = q.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? q
-        async let m: MovieLookup? = try? app.api.get("/titles/lookup?term=\(enc)")
-        async let s: ShowLookup? = try? app.api.get("/shows/lookup?term=\(enc)")
-        async let p: PeopleSearch? = try? app.api.get("/people/search?q=\(enc)&page=1")
+        let api = app.api
+        async let m: MovieLookup? = try? api.get("/titles/lookup?term=\(enc)")
+        async let s: ShowLookup? = try? api.get("/shows/lookup?term=\(enc)")
+        async let p: PeopleSearch? = try? api.get("/people/search?q=\(enc)&page=1")
         movies = dedupe((await m)?.movies?.compactMap(\.item) ?? [])
         shows = dedupe((await s)?.shows?.compactMap(\.item) ?? [])
         people = Array(((await p)?.people ?? []).prefix(20))

@@ -23,10 +23,11 @@ struct HomeView: View {
     }
 
     func load() async {
+        let api = app.api
         do {
-            async let h: Home = app.api.get("/home")
-            async let hl: Health? = try? app.api.get("/health")
-            async let a: Asks? = try? app.api.get("/asks?limit=200")
+            async let h: Home = api.get("/home")
+            async let hl: Health? = try? api.get("/health")
+            async let a: Asks? = try? api.get("/asks?limit=200")
             home = try await h
             health = await hl
             asks = await a?.asks ?? []

@@ -44,9 +44,10 @@ struct TitlePage: View {
     }
 
     func load() async {
+        let api = app.api, kind = self.kind, tmdb = self.tmdb
         do {
-            async let det: Details = app.api.get("/metadata/\(kind.rawValue)/\(tmdb)")
-            async let ex: Extras? = try? app.api.get("/extras/\(kind.rawValue)/\(tmdb)")
+            async let det: Details = api.get("/metadata/\(kind.rawValue)/\(tmdb)")
+            async let ex: Extras? = try? api.get("/extras/\(kind.rawValue)/\(tmdb)")
             let details = try await det
             d = details
             extras = await ex
@@ -211,7 +212,7 @@ struct TitlePage: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 24) {
                 Text("Episodes").font(Typo.title2).foregroundStyle(Theme.text)
-                SegmentBar(options: seasons.map { ($0.number, "Season \($0.number)", nil) }, selection: $season)
+                SegmentBar(options: seasons.map { ($0.number, "Season \($0.number)", String?.none) }, selection: $season)
             }
             .padding(.horizontal, Theme.gutter)
             ScrollView(.horizontal, showsIndicators: false) {

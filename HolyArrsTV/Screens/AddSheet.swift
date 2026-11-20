@@ -115,10 +115,11 @@ struct AddSheet: View {
     func load() async {
         defer { loading = false }
         guard manage else { return }
+        let api = app.api
         do {
-            async let f: LibraryFolders = app.api.get("/library-folders")
-            async let r: PickRules = app.api.get("/pick-rules")
-            async let td: TitleDefaults? = try? app.api.get("/settings/title-defaults")
+            async let f: LibraryFolders = api.get("/library-folders")
+            async let r: PickRules = api.get("/pick-rules")
+            async let td: TitleDefaults? = try? api.get("/settings/title-defaults")
             folders = try await f.library_folders.filter { $0.kind == kindKey }
             let allRules = try await r.pick_rules
             rules = allRules.filter { ($0.kinds ?? []).isEmpty || $0.kinds!.contains(kindKey) }

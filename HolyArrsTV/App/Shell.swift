@@ -13,6 +13,7 @@ struct Shell: View {
         HStack(spacing: 0) {
             sidebar
                 .frame(width: sidebarOpen ? 400 : 128)
+                .focusScope(ns)
                 .focusSection()
             ZStack {
                 ForEach(Section.allCases) { s in
@@ -37,9 +38,7 @@ struct Shell: View {
                         case let .person(id, name): PersonPage(personID: id, name: name)
                         }
                     }
-                    .toolbar(.hidden, for: .navigationBar)
                 }
-                .toolbar(.hidden, for: .navigationBar)
         }
         // Menu on a section's first page sends focus to the sidebar instead of
         // leaving the app, like going "back" to the menu in the web app.
