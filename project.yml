@@ -1,0 +1,24 @@
+name: HolyArrsTV
+options:
+  bundleIdPrefix: io.holyarrs.tv
+  deploymentTarget:
+    tvOS: "17.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+targets:
+  HolyArrsTV:
+    type: application
+    platform: tvOS
+    sources:
+      - path: HolyArrsTV
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.holyarrs.tv.app
+        PRODUCT_NAME: HolyArrs
+        INFOPLIST_FILE: HolyArrsTV/Info.plist
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "3"
