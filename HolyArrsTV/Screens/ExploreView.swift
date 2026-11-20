@@ -137,7 +137,7 @@ struct HeroCarousel: View {
             VStack(alignment: .leading, spacing: 18) {
                 if let logo = logos[item.id] ?? item.card_logo {
                     RemoteImage(raw: logo, showInitials: false, contentMode: .fit)
-                        .frame(maxWidth: 760, maxHeight: 150, alignment: .bottomLeading)
+                        .frame(maxWidth: 720, maxHeight: 130, alignment: .bottomLeading)
                 } else {
                     Text(item.name).font(Typo.geist(44, .bold)).foregroundStyle(.white)
                 }
@@ -164,9 +164,9 @@ struct HeroCarousel: View {
                 }
                 .focusSection()
             }
-            .padding(56)
+            .padding(.horizontal, 56).padding(.top, 56).padding(.bottom, 64)
         }
-        .frame(height: 760)
+        .frame(height: 800)
         .frame(maxWidth: .infinity)
         .clipShape(RoundedRectangle(cornerRadius: Theme.rPanel * 1.4, style: .continuous))
         .task(id: item.id) { await loadLogo(item) }
