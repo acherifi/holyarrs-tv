@@ -5,6 +5,9 @@ import SwiftUI
 struct Shell: View {
     @EnvironmentObject var app: AppState
     @FocusState private var sidebarFocus: Section?
+    /// The sidebar becomes focusable only after the page has taken focus, so
+    /// tvOS (which starts at the top-leading focusable view) lands in the page.
+    @State private var sidebarReady = false
     @Namespace private var ns
     static let rail: CGFloat = 128
 
@@ -31,7 +34,11 @@ struct Shell: View {
         }
         .focusScope(ns)
         .animation(.easeOut(duration: 0.24), value: sidebarOpen)
-        .ignoresSafeArea(edges: [.top, .bottom])
+        .ignoresSafeArea()
+        .task {
+            try? await Task.sleep(nanoseconds: 800_000_000)
+            sidebarReady = true
+        }
     }
 
     @ViewBuilder func page(_ s: Section) -> some View {
@@ -131,6 +138,7 @@ struct Shell: View {
         }
         .buttonStyle(SidebarButtonStyle())
         .focused($sidebarFocus, equals: s)
+        .disabled(!sidebarReady)
     }
 }
 

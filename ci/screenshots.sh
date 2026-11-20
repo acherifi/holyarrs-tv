@@ -7,11 +7,11 @@ DEV=$(xcrun simctl list devices available | grep -E 'Apple TV 4K' | head -1 | gr
 xcrun simctl boot "$DEV" || true
 xcrun simctl bootstatus "$DEV" -b
 # A fresh simulator restarts its UI once after first boot: let it settle.
-sleep 45
+sleep 100
 xcrun simctl install "$DEV" "$APP"
 BID=io.holyarrs.tv.app
 mkdir -p shots
-xcrun simctl launch "$DEV" $BID -demo YES >/dev/null; sleep 15
+xcrun simctl launch "$DEV" $BID -demo YES >/dev/null; sleep 20; xcrun simctl terminate "$DEV" $BID; xcrun simctl launch "$DEV" $BID -demo YES >/dev/null; sleep 15
 for screen in home explore popular movies shows search title-movie title-show requests calendar downloads person add-sheet settings; do
   xcrun simctl terminate "$DEV" $BID 2>/dev/null || true
   xcrun simctl launch "$DEV" $BID -demo YES -screen "$screen" >/dev/null

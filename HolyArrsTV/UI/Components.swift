@@ -22,7 +22,7 @@ struct RemoteImage: View {
             } else if url == nil || failed {
                 if showInitials { InitialsTile(name: name) } else { Color.clear }
             } else {
-                Theme.surface2
+                if showInitials { Theme.surface2 } else { Color.clear }
             }
         }
         .task(id: url) {
