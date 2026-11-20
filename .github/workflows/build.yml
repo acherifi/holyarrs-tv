@@ -44,6 +44,7 @@ jobs:
         run: |
           mkdir -p out && cp -f build.log build-device.log out/ 2>/dev/null || true
           cp -f shots/*.png out/ 2>/dev/null || true
+          cp -rf shots/crashes out/ 2>/dev/null || true
           echo "${{ github.sha }} ${{ job.status }}" > out/STATUS
           cd out
           git init -q -b ci-results

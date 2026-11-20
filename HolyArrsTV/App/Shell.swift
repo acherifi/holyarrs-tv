@@ -6,23 +6,30 @@ struct Shell: View {
     @EnvironmentObject var app: AppState
     @FocusState private var sidebarFocus: Section?
     @Namespace private var ns
+    static let rail: CGFloat = 128
 
     private var sidebarOpen: Bool { sidebarFocus != nil }
 
     var body: some View {
-        HStack(spacing: 0) {
-            sidebar
-                .frame(width: sidebarOpen ? 400 : 128)
-                .focusScope(ns)
-                .focusSection()
+        // The page always sits right of the collapsed rail; the open sidebar
+        // slides over it (like the web's overlay sidebar) instead of pushing it.
+        ZStack(alignment: .leading) {
             ZStack {
                 ForEach(Section.allCases) { s in
                     if s == app.section { page(s).transition(.opacity) }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.leading, Shell.rail)
             .focusSection()
+            .prefersDefaultFocus(true, in: ns)
+
+            sidebar
+                .frame(width: sidebarOpen ? 400 : Shell.rail)
+                .shadow(color: .black.opacity(sidebarOpen ? 0.35 : 0), radius: 40, x: 10)
+                .focusSection()
         }
+        .focusScope(ns)
         .animation(.easeOut(duration: 0.24), value: sidebarOpen)
         .ignoresSafeArea(edges: [.top, .bottom])
     }
@@ -76,15 +83,15 @@ struct Shell: View {
                 BrandMark().frame(width: 52, height: 52)
                 if sidebarOpen { Text("HolyArrs").font(Typo.geist(19, .bold)).foregroundStyle(Theme.text) }
             }
-            .padding(.leading, 38).padding(.top, 50).padding(.bottom, 30)
+            .padding(.leading, 38).padding(.top, 44).padding(.bottom, 18)
 
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
                         if let label = group.0 {
                             Text(label).font(Typo.footnote).foregroundStyle(Theme.textMuted)
                                 .opacity(sidebarOpen ? 1 : 0)
-                                .padding(.leading, 36).padding(.top, 22).padding(.bottom, 6)
+                                .padding(.leading, 36).padding(.top, 14).padding(.bottom, 2)
                         }
                         ForEach(group.1) { s in item(s) }
                     }
@@ -106,11 +113,12 @@ struct Shell: View {
                         }
                     }
                 }
-                .padding(.leading, 36).padding(.bottom, 44)
+                .padding(.leading, 36).padding(.bottom, 36).padding(.top, 10)
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .background(Theme.sidebarBG.ignoresSafeArea())
+        .clipped()
         .overlay(alignment: .trailing) { Rectangle().fill(Theme.line).frame(width: 1).ignoresSafeArea() }
     }
 
@@ -123,7 +131,6 @@ struct Shell: View {
         }
         .buttonStyle(SidebarButtonStyle())
         .focused($sidebarFocus, equals: s)
-        .prefersDefaultFocus(app.section == s, in: ns)
     }
 }
 
@@ -144,7 +151,7 @@ struct SidebarRow: View {
             }
         }
         .padding(.horizontal, 22)
-        .frame(height: 64)
+        .frame(height: 56)
         .frame(maxWidth: open ? .infinity : 96, alignment: .leading)
         .background(RoundedRectangle(cornerRadius: Theme.rBtn, style: .continuous)
             .fill(focused ? Theme.surface3 : (selected ? Theme.surface2 : .clear)))

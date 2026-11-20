@@ -128,12 +128,12 @@ final class API {
     }
 }
 
-/// In-memory picture cache shared by every RemoteImage.
+/// In-memory picture cache shared by every RemoteImage (main actor: no locks needed).
+@MainActor
 final class ImageStore {
     static let shared = ImageStore()
     private let cache = NSCache<NSURL, UIImage>()
     private var inflight: [URL: Task<UIImage?, Never>] = [:]
-    private let lock = NSLock()
 
     init() { cache.countLimit = 600 }
 
@@ -142,19 +142,16 @@ final class ImageStore {
     func load(_ request: URLRequest) async -> UIImage? {
         guard let url = request.url else { return nil }
         if let hit = cached(url) { return hit }
-        lock.lock()
-        if let t = inflight[url] { lock.unlock(); return await t.value }
-        let task = Task<UIImage?, Never> {
+        if let t = inflight[url] { return await t.value }
+        let task = Task<UIImage?, Never>.detached(priority: .userInitiated) {
             guard let (data, resp) = try? await URLSession.shared.data(for: request),
                   ((resp as? HTTPURLResponse)?.statusCode ?? 200) < 300,
                   let img = UIImage(data: data) else { return nil }
-            let ready = await img.byPreparingForDisplay() ?? img
-            return ready
+            return await img.byPreparingForDisplay() ?? img
         }
         inflight[url] = task
-        lock.unlock()
         let img = await task.value
-        lock.lock(); inflight[url] = nil; lock.unlock()
+        inflight[url] = nil
         if let img { cache.setObject(img, forKey: url as NSURL) }
         return img
     }

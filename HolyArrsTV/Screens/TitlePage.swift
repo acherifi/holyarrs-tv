@@ -150,7 +150,8 @@ struct TitlePage: View {
                         bit
                     }
                 }
-                .font(Typo.geist(16, .medium)).foregroundStyle(Theme.textMuted)
+                .font(Typo.geist(15, .medium)).foregroundStyle(Theme.textMuted)
+                .lineLimit(1).minimumScaleFactor(0.6)
                 if let o = d.overview, !o.isEmpty { FocusableText(text: o, lines: 5).padding(.leading, -18) }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -162,7 +163,7 @@ struct TitlePage: View {
                 if let g = d.genres, !g.isEmpty { credit("Genres", g.joined(separator: ", ")) }
                 if let s = d.studios?.first { credit(kind == .show ? "Network" : "Studio", s) }
             }
-            .frame(width: 640, alignment: .leading)
+            .frame(width: 560, alignment: .leading)
         }
         .padding(.horizontal, Theme.gutter)
         .focusSection()

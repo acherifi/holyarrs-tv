@@ -49,7 +49,8 @@ extension AppState {
         case "downloads": section = .downloads
         case "settings": section = .settings
         case "title-movie": section = .explore; open(.title(kind: .movie, tmdb: "1218925"))
-        case "title-show", "add-sheet": section = .shows; open(.title(kind: .show, tmdb: "424"))
+        case "title-show": section = .shows; open(.title(kind: .show, tmdb: "424"))
+        case "add-sheet": section = .explore; open(.title(kind: .movie, tmdb: "1218925"))
         case "person": section = .explore; open(.person(id: "182287", name: "John Barrowman"))
         default: section = .home
         }

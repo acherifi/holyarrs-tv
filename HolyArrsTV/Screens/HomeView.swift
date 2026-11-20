@@ -209,8 +209,8 @@ struct Tile: View {
                 HStack(spacing: 14) {
                     Image(systemName: icon).font(.system(size: 20, weight: .semibold)).foregroundStyle(.white)
                         .frame(width: 44, height: 44).background(RoundedRectangle(cornerRadius: 10).fill(color))
-                    Text(title).font(Typo.headline).foregroundStyle(Theme.text)
-                    Spacer()
+                    Text(title).font(Typo.headline).foregroundStyle(Theme.text).lineLimit(1).minimumScaleFactor(0.7)
+                    Spacer(minLength: 4)
                     Image(systemName: "chevron.right").font(.system(size: 20, weight: .semibold)).foregroundStyle(Theme.textFaint)
                 }
                 Spacer(minLength: 0)
