@@ -1,0 +1,37 @@
+name: android
+# Builds the Android TV app on GitHub's free Linux runners (free for public repos)
+# and publishes the APK at a fixed link:
+# https://github.com/acherifi/holyarrs-tv/releases/download/android/holyarrs-tv.apk
+on:
+  push:
+    branches: [main]
+    paths: ['android/**', '.github/workflows/android.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: build-android
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Build
+        run: ./gradlew --console=plain --no-daemon assembleRelease
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk holyarrs-tv.apk
+          gh release view android >/dev/null 2>&1 || gh release create android --title "Android TV app" \
+            --notes "The latest Android TV build. Install it with the Downloader app or adb (see the README)." --latest=false
+          gh release upload android holyarrs-tv.apk --clobber

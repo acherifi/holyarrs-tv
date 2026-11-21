@@ -2,11 +2,12 @@ name: build
 on:
   push:
     branches: [main]
+    paths-ignore: ['android/**', '.github/workflows/android.yml']
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: build
+  group: build-tvos
   cancel-in-progress: true
 jobs:
   build:

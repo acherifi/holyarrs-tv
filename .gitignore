@@ -6,3 +6,8 @@ shots/
 out/
 .DS_Store
 xcuserdata/
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/local.properties
