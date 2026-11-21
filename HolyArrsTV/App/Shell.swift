@@ -36,6 +36,11 @@ struct Shell: View {
                 // with the focused item; Menu closes it instead of leaving the app.
                 .onMoveCommand { if $0 == .right && sidebarOpen { closeSidebar() } }
                 .onExitCommand(perform: sidebarOpen ? { closeSidebar() } : nil)
+                // Entering the sidebar starts on the current section, not on the item
+                // that happens to be level with where focus was in the page.
+                .onChange(of: sidebarFocus) { old, new in
+                    if old == nil, let new, new != app.section { sidebarFocus = app.section }
+                }
         }
         .focusScope(ns)
         .animation(.easeOut(duration: 0.24), value: sidebarOpen)

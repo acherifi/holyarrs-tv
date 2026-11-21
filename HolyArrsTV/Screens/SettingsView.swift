@@ -34,6 +34,11 @@ struct SettingsView: View {
                     }
                 }
                 if !firstRun {
+                    panel("Playback", app.player == .infuse
+                          ? "\"Play in Infuse\" starts the title in Infuse, from the share that has it (add your Jellyfin server in Infuse)."
+                          : "\"Open in Jellyfin\" opens the title in Swiftfin. Sign in to Jellyfin below once.") {
+                        SegmentBar(options: Player.allCases.map { ($0, $0.label, nil) }, selection: $app.player)
+                    }
                     panel("Jellyfin", "\"Open in Jellyfin\" opens Swiftfin on this Apple TV. Sign in once with the same Jellyfin user you use in Swiftfin; only the user's id is kept.") {
                         field(.jellyfinAddress)
                         field(.jellyfinUser)
@@ -81,6 +86,7 @@ struct SettingsView: View {
             Text(line).font(Typo.callout).foregroundStyle(Theme.textMuted)
             content()
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(40)
         .background(RoundedRectangle(cornerRadius: Theme.rPanel).fill(Theme.surface1))
         .overlay(RoundedRectangle(cornerRadius: Theme.rPanel).strokeBorder(Theme.line, lineWidth: 2))

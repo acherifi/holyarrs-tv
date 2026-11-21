@@ -43,6 +43,7 @@
 	<array>
 		<string>swiftfin</string>
 		<string>jellyfin</string>
+		<string>infuse</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

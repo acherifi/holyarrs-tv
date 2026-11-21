@@ -41,6 +41,8 @@ final class AppState: ObservableObject {
     @AppStorage("jellyfinURL") var jellyfinURL = ""
     @AppStorage("jellyfinUserID") var jellyfinUserID = ""
     @AppStorage("jellyfinUserName") var jellyfinUserName = ""
+    /// Which app the title page's play button hands off to.
+    @AppStorage("player") var player: Player = .jellyfin
 
     @Published var section: Section = .home
     @Published var paths: [Section: NavigationPath] = [:]
@@ -122,6 +124,25 @@ final class AppState: ObservableObject {
             show(error.localizedDescription)
         }
     }
+
+    // MARK: Infuse hand-off
+
+    /// Starts playback in Infuse through its TMDB library link:
+    /// infuse://movie/<tmdb>?play or infuse://series/<tmdb>?play (Infuse 8.4.7+).
+    /// Infuse plays the title from whichever share has it (e.g. your Jellyfin server).
+    func playInInfuse(kind: Kind, tmdb: String) async {
+        guard !tmdb.isEmpty, kind != .artist else { show("Infuse can't play this title."); return }
+        let deep = URL(string: "infuse://\(kind == .show ? "series" : "movie")/\(tmdb)?play")!
+        if demo { show("Would open \(deep.absoluteString)"); return }
+        let ok = await UIApplication.shared.open(deep)
+        if !ok { show("Install Infuse from the App Store to play there.") }
+    }
+}
+
+/// The app the play button opens.
+enum Player: String, CaseIterable {
+    case jellyfin, infuse
+    var label: String { self == .jellyfin ? "Jellyfin" : "Infuse" }
 }
 
 enum JellyfinLink {

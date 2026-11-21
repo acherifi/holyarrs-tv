@@ -106,7 +106,10 @@ struct TitlePage: View {
             if d.in_library == true {
                 Button { } label: { Label("In library", systemImage: "checkmark") }
                     .buttonStyle(PillButtonStyle(kind: .primary)).focused($heroFocus, equals: "main")
-                if let id = d.title_id, manage {
+                if app.player == .infuse {
+                    Button { Task { await app.playInInfuse(kind: kind, tmdb: d.tmdb_id.value) } } label: { Label("Play in Infuse", systemImage: "play.fill") }
+                        .buttonStyle(PillButtonStyle(kind: .glass)).focused($heroFocus, equals: "jf")
+                } else if let id = d.title_id, manage {
                     Button { Task { await app.openInJellyfin(titleID: id) } } label: { Label("Open in Jellyfin", systemImage: "play.fill") }
                         .buttonStyle(PillButtonStyle(kind: .glass)).focused($heroFocus, equals: "jf")
                 }

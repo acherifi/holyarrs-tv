@@ -72,6 +72,24 @@ Disabling the sidebar items does not move focus out of them.
 Menu follows Apple's convention: it closes the open sidebar, goes back on a pushed
 page, and leaves the app on a section's first page. It never opens the sidebar.
 
+Entering the sidebar starts on the current section (`onChange(of: sidebarFocus)`),
+not on the item level with where focus was in the page.
+
+## Playback: Jellyfin or Infuse
+
+Settings → Playback picks the app (`AppState.player`, default Jellyfin).
+- Jellyfin: "Open in Jellyfin" → Swiftfin deep link from HolyArrs' watch links.
+- Infuse: "Play in Infuse" → `infuse://movie/<tmdb>?play` or `infuse://series/<tmdb>?play`
+  (Infuse 8.4.7+, Apple TV supported). It only plays titles in Infuse's *library*:
+  the Jellyfin server must be added in Infuse as a Jellyfin share with "Include in
+  Library" on. Otherwise Infuse shows a TMDB placeholder page with a Search button.
+
+## App icon
+
+`HolyArrsTV/Assets.xcassets` holds the layered tvOS icon (Back gradient, Middle
+diamond, Front star) and the Top Shelf images, drawn from the `BrandMark` geometry.
+XcodeGen sets `ASSETCATALOG_COMPILER_APPICON_NAME` to "App Icon & Top Shelf Image".
+
 ## Testing with the remote on the Mac
 
 Xcode 27 has no Simulator.app. To press remote buttons, use a throwaway UI test
