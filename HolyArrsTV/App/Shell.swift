@@ -9,6 +9,7 @@ struct Shell: View {
     /// tvOS (which starts at the top-leading focusable view) lands in the page.
     @State private var sidebarReady = false
     @Namespace private var ns
+    @Environment(\.resetFocus) private var resetFocus
     static let rail: CGFloat = 128
 
     private var sidebarOpen: Bool { sidebarFocus != nil }
@@ -31,6 +32,10 @@ struct Shell: View {
                 .frame(width: sidebarOpen ? 400 : Shell.rail)
                 .shadow(color: .black.opacity(sidebarOpen ? 0.35 : 0), radius: 40, x: 10)
                 .focusSection()
+                // Right always closes the sidebar, even when nothing focusable is level
+                // with the focused item; Menu closes it instead of leaving the app.
+                .onMoveCommand { if $0 == .right && sidebarOpen { closeSidebar() } }
+                .onExitCommand(perform: sidebarOpen ? { closeSidebar() } : nil)
         }
         .focusScope(ns)
         .animation(.easeOut(duration: 0.24), value: sidebarOpen)
@@ -39,6 +44,13 @@ struct Shell: View {
             try? await Task.sleep(nanoseconds: 800_000_000)
             sidebarReady = true
         }
+    }
+
+    /// Sends focus back to the page: the page is the preferred default focus in `ns`,
+    /// so re-evaluating it moves focus out of the sidebar.
+    func closeSidebar() {
+        sidebarFocus = nil
+        resetFocus(in: ns)
     }
 
     @ViewBuilder func page(_ s: Section) -> some View {
@@ -54,9 +66,9 @@ struct Shell: View {
                     }
                 }
         }
-        // Menu on a section's first page sends focus to the sidebar instead of
-        // leaving the app, like going "back" to the menu in the web app.
-        .onExitCommand(perform: (app.paths[s]?.isEmpty ?? true) ? { sidebarFocus = s } : nil)
+        // No Menu handler here: on a pushed page the NavigationStack goes back, and on
+        // a section's first page Menu leaves the app (Apple's convention). Left opens
+        // the sidebar; Menu while it is open closes it (see the sidebar's onExitCommand).
     }
 
     @ViewBuilder func screen(_ s: Section) -> some View {
@@ -133,6 +145,7 @@ struct Shell: View {
         Button {
             if app.section == s { app.paths[s] = NavigationPath() }
             app.section = s
+            closeSidebar()
         } label: {
             SidebarRow(section: s, selected: app.section == s, open: sidebarOpen)
         }

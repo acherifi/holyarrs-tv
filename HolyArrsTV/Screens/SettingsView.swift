@@ -13,6 +13,9 @@ struct SettingsView: View {
     @State private var jfUser = ""
     @State private var jfPassword = ""
     @State private var jfStatus: String?
+    /// The field whose editor is open.
+    @State private var editing: SettingsField?
+    @FocusState private var focus: SettingsField?
 
     var body: some View {
         ScrollView(.vertical) {
@@ -22,8 +25,8 @@ struct SettingsView: View {
                     Text(firstRun ? "Welcome to HolyArrs" : "Settings").font(Typo.largeTitle).foregroundStyle(Theme.text)
                 }
                 panel("HolyArrs", "Your server's address and an API key (Settings → Sign-in → API keys in the web app, scopes read and write).") {
-                    field("Address", "http://192.168.1.10:6262", $server)
-                    field("API key", "hak_…", $key, secure: true)
+                    field(.address)
+                    field(.apiKey)
                     HStack(spacing: 20) {
                         Button { Task { await connect() } } label: { testing ? AnyView(ProgressView()) : AnyView(Text("Connect")) }
                             .buttonStyle(PillButtonStyle(kind: .accent))
@@ -32,9 +35,9 @@ struct SettingsView: View {
                 }
                 if !firstRun {
                     panel("Jellyfin", "\"Open in Jellyfin\" opens Swiftfin on this Apple TV. Sign in once with the same Jellyfin user you use in Swiftfin; only the user's id is kept.") {
-                        field("Jellyfin address", "https://jellyfin.example.com", $jfURL)
-                        field("User name", "", $jfUser)
-                        field("Password", "", $jfPassword, secure: true)
+                        field(.jellyfinAddress)
+                        field(.jellyfinUser)
+                        field(.jellyfinPassword)
                         HStack(spacing: 20) {
                             Button("Sign in to Jellyfin") { Task { await jellyfinSignIn() } }.buttonStyle(PillButtonStyle(kind: .accent))
                             Text(jfStatus ?? (app.jellyfinUserID.isEmpty ? "Not signed in" : "Signed in as \(app.jellyfinUserName)"))
@@ -51,9 +54,24 @@ struct SettingsView: View {
             .frame(maxWidth: 1300, alignment: .leading)
             .padding(.horizontal, Theme.gutter).padding(.vertical, 70)
         }
+        // Start on the address row, so a first run begins where the user has to type.
+        .defaultFocus($focus, .address)
         .onAppear {
             server = app.server; key = app.apiKey; jfURL = app.jellyfinURL
             jfUser = app.jellyfinUserName
+        }
+        .fullScreenCover(item: $editing) { f in
+            FieldEditor(field: f, text: binding(f))
+        }
+    }
+
+    func binding(_ f: SettingsField) -> Binding<String> {
+        switch f {
+        case .address: $server
+        case .apiKey: $key
+        case .jellyfinAddress: $jfURL
+        case .jellyfinUser: $jfUser
+        case .jellyfinPassword: $jfPassword
         }
     }
 
@@ -69,12 +87,15 @@ struct SettingsView: View {
         .focusSection()
     }
 
-    func field(_ label: String, _ prompt: String, _ text: Binding<String>, secure: Bool = false) -> some View {
-        HStack(spacing: 24) {
-            Text(label).font(Typo.subhead).foregroundStyle(Theme.textMuted).frame(width: 260, alignment: .leading)
-            if secure { SecureField(prompt, text: text).font(Typo.body) }
-            else { TextField(prompt, text: text).font(Typo.body).textContentType(.URL).autocorrectionDisabled() }
+    /// A full-width focusable row showing the field's value. Raw text fields are
+    /// kept out of the focus chain: tvOS moves focus geometrically, and a field
+    /// beside a label is easy to leave unreachable. Selecting the row opens an editor.
+    func field(_ f: SettingsField) -> some View {
+        Button { editing = f } label: {
+            FieldRow(label: f.label, value: f.display(binding(f).wrappedValue), empty: binding(f).wrappedValue.isEmpty)
         }
+        .buttonStyle(FieldRowButtonStyle())
+        .focused($focus, equals: f)
     }
 
     func connect() async {
@@ -113,5 +134,148 @@ struct SettingsView: View {
             jfPassword = ""
             jfStatus = "Signed in as \(app.jellyfinUserName)."
         } catch { jfStatus = error.localizedDescription }
+    }
+}
+
+// MARK: Fields
+
+enum SettingsField: String, Identifiable {
+    case address, apiKey, jellyfinAddress, jellyfinUser, jellyfinPassword
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .address: "Address"
+        case .apiKey: "API key"
+        case .jellyfinAddress: "Jellyfin address"
+        case .jellyfinUser: "User name"
+        case .jellyfinPassword: "Password"
+        }
+    }
+    var prompt: String {
+        switch self {
+        case .address: "http://192.168.1.10:6262"
+        case .apiKey: "hak_…"
+        case .jellyfinAddress: "https://jellyfin.example.com"
+        case .jellyfinUser: "Jellyfin user name"
+        case .jellyfinPassword: "Jellyfin password"
+        }
+    }
+    var help: String {
+        switch self {
+        case .address: "The address of your HolyArrs server, with http:// or https:// and the port."
+        case .apiKey: "Create one in the web app: Settings → Sign-in → API keys, scopes read and write."
+        case .jellyfinAddress: "The address Swiftfin uses for your Jellyfin server."
+        case .jellyfinUser: "The Jellyfin user you're signed in with in Swiftfin."
+        case .jellyfinPassword: "Used once to sign in. Only the user's id is kept."
+        }
+    }
+    var secure: Bool { self == .apiKey || self == .jellyfinPassword }
+    var isURL: Bool { self == .address || self == .jellyfinAddress }
+
+    /// What the row shows: the value, a masked secret, or the placeholder.
+    func display(_ value: String) -> String {
+        if value.isEmpty { return prompt }
+        switch self {
+        case .apiKey: return value.count > 8 ? "••••••••" + value.suffix(4) : "••••••••"
+        case .jellyfinPassword: return "••••••••"
+        default: return value
+        }
+    }
+}
+
+struct FieldRow: View {
+    let label: String
+    let value: String
+    let empty: Bool
+    @Environment(\.isFocused) private var focused
+
+    var body: some View {
+        HStack(spacing: 24) {
+            Text(label).font(Typo.subhead)
+                .foregroundStyle(focused ? Theme.text : Theme.textMuted)
+                .frame(width: 260, alignment: .leading)
+            Text(value).font(Typo.body)
+                .foregroundStyle(empty ? Theme.textFaint : Theme.text)
+                .lineLimit(1).truncationMode(.middle)
+            Spacer(minLength: 0)
+            Image(systemName: "pencil")
+                .font(.system(size: 24, weight: .medium))
+                .foregroundStyle(focused ? Theme.text : Theme.textFaint)
+        }
+        .padding(.horizontal, 28)
+        .frame(maxWidth: .infinity, minHeight: 80)
+        .background(RoundedRectangle(cornerRadius: Theme.rBtn, style: .continuous)
+            .fill(focused ? Theme.surface3 : Theme.surface2))
+        .overlay(RoundedRectangle(cornerRadius: Theme.rBtn, style: .continuous)
+            .strokeBorder(focused ? Color.white : Theme.line, lineWidth: focused ? 4 : 2))
+    }
+}
+
+/// Lifts on focus like the other controls, without the system's tilt.
+struct FieldRowButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View { FieldRowBody(configuration: configuration) }
+}
+
+private struct FieldRowBody: View {
+    let configuration: ButtonStyleConfiguration
+    @Environment(\.isFocused) private var focused
+    var body: some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.99 : (focused ? 1.02 : 1))
+            .shadow(color: .black.opacity(focused ? 0.3 : 0), radius: 18, y: 8)
+            .animation(.easeOut(duration: 0.15), value: focused)
+    }
+}
+
+/// Full-screen editor for one field. The text field takes focus on appear, so one
+/// click opens the keyboard. Menu or Cancel discards; Save or the keyboard's Done keeps it.
+struct FieldEditor: View {
+    let field: SettingsField
+    @Binding var text: String
+    @State private var draft = ""
+    @FocusState private var inputFocused: Bool
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        ZStack {
+            Theme.bg.ignoresSafeArea()
+            VStack(alignment: .leading, spacing: 36) {
+                Text(field.label).font(Typo.largeTitle).foregroundStyle(Theme.text)
+                Text(field.help).font(Typo.callout).foregroundStyle(Theme.textMuted)
+                input
+                    .font(Typo.body)
+                    .focused($inputFocused)
+                    .onSubmit(save)
+                HStack(spacing: 24) {
+                    Button("Save", action: save).buttonStyle(PillButtonStyle(kind: .accent))
+                    Button("Cancel") { dismiss() }.buttonStyle(PillButtonStyle(kind: .plain))
+                }
+                .focusSection()
+            }
+            .frame(maxWidth: 1300, alignment: .leading)
+            .padding(.horizontal, Theme.gutter)
+        }
+        .onAppear {
+            draft = text
+            inputFocused = true
+        }
+    }
+
+    @ViewBuilder var input: some View {
+        if field.secure {
+            SecureField(field.prompt, text: $draft)
+        } else {
+            TextField(field.prompt, text: $draft)
+                .textContentType(field.isURL ? .URL : .username)
+                .keyboardType(field.isURL ? .URL : .default)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+        }
+    }
+
+    func save() {
+        text = draft.trimmingCharacters(in: .whitespacesAndNewlines)
+        dismiss()
     }
 }

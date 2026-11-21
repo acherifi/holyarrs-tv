@@ -87,7 +87,8 @@ struct HomeView: View {
             if let hero = home.arrived?.first {
                 Button { app.open(hero.title_id.map { .libraryTitle(id: $0) } ?? .title(kind: hero.kind, tmdb: "")) } label: {
                     ZStack(alignment: .bottomLeading) {
-                        RemoteImage(raw: hero.backdrop, size: "w780", name: hero.name)
+                        // In an overlay so the filled picture can't widen the card past its column.
+                        Color.clear.overlay { RemoteImage(raw: hero.backdrop, size: "w780", name: hero.name) }
                         LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .center, endPoint: .bottom)
                         VStack(alignment: .leading, spacing: 6) {
                             if let logo = hero.logo {
@@ -100,7 +101,7 @@ struct HomeView: View {
                             .padding(.horizontal, 12).padding(.vertical, 6).background(Capsule().fill(.black.opacity(0.55)))
                             .padding(18).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     }
-                    .frame(height: 232)
+                    .frame(maxWidth: .infinity, minHeight: 232, maxHeight: 232)
                     .clipShape(RoundedRectangle(cornerRadius: Theme.rPanel, style: .continuous))
                     .modifier(FocusRing(radius: Theme.rPanel))
                 }

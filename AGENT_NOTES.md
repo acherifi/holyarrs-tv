@@ -52,47 +52,31 @@ ci/screenshots.sh        Simulator screenshots used by .github/workflows/build.y
   least the 17.0 deployment target.
 - Free team builds expire after 7 days. Re-run from Xcode.
 
-## Open bug: can't reach the address / API key fields with the Siri Remote
+## Fixed: can't reach the address / API key fields with the Siri Remote
 
-The user reports: on the Settings screen they can't move focus to the text fields
-to type the HolyArrs URL and API key. This happens on a real Apple TV, and probably
-on the first-run screen as well. The cause has not been reproduced or confirmed yet.
+Cause: tvOS moves focus geometrically. Each text field sat right of a 260 pt
+label, and the "Connect" button was left-aligned under the labels. Nothing
+focusable was above Connect, so focus could never leave it.
 
-Relevant code: `HolyArrsTV/Screens/SettingsView.swift`
+Fix (`HolyArrsTV/Screens/SettingsView.swift`): each field is a full-width
+focusable button row (`FieldRow`) that shows the value, a masked secret or the
+placeholder. Selecting it opens `FieldEditor`, a full-screen cover with one
+focused text field. Focus starts on the address row (`.defaultFocus`).
+Lesson: keep focusables in one column, or make rows full width.
 
-- Whole screen is a `ScrollView(.vertical)` → `VStack` of `panel(...)`s.
-- `panel()` wraps content in a `VStack` with background/overlay shapes and
-  `.focusSection()`.
-- `field()` is `HStack { Text(label).frame(width: 260); TextField / SecureField }`
-  with `.font(Typo.body)`. No `@FocusState`, no `defaultFocus`, no explicit
-  `.focusable`.
-- The only other focusables on the first-run screen are the "Connect" button
-  (`PillButtonStyle`) and, when configured, the Jellyfin fields/button.
-- In `Shell.swift` the page container has `.focusSection()` +
-  `.prefersDefaultFocus(true, in: ns)` inside `.focusScope(ns)`. Sidebar items are
-  `.disabled(!sidebarReady)` for the first 0.8 s so tvOS starts focus in the page.
-  Menu on a section's first page sets `sidebarFocus` (onExitCommand).
+## Sidebar focus (Shell.swift)
 
-Suspicions to check (in the simulator with `-demo YES -screen settings`, and first run
-without config):
+Selecting an item, Right, and Menu all close the sidebar. `closeSidebar()` calls
+`resetFocus(in: ns)`, and the page is the preferred default focus in `ns`.
+Disabling the sidebar items does not move focus out of them.
+Menu follows Apple's convention: it closes the open sidebar, goes back on a pushed
+page, and leaves the app on a section's first page. It never opens the sidebar.
 
-1. A bare TextField inside an HStack inside a focusSection + ScrollView may get
-   no usable focus frame on tvOS 17/18. Check with the focus debugger:
-   pause, then in lldb run `po UIFocusDebugger.status()` and
-   `po UIFocusDebugger.checkFocusability(for: <view>)`.
-2. Focus may land on "Connect", and moving up never reaches the fields because they're
-   not focus candidates.
+## Testing with the remote on the Mac
 
-Suggested robust fix, the same approach as the Android app, which had the same
-problem: don't put raw text fields in the focus chain. Make each field a
-focusable **Button row** that shows the current value, or a placeholder or
-masked key. Selecting it opens a sheet or full-screen cover with one
-`TextField`/`SecureField` that gets focus on appear (`@FocusState` +
-`.onAppear { focused = true }`), so the tvOS keyboard comes up right away.
-Save on submit. Also put `.defaultFocus` on the address row on first run so the
-user starts there. Keep the look consistent with `PillButtonStyle` and `Theme`.
-Then verify with `ci/screenshots.sh`, or by running in the simulator and
-moving focus with the arrow keys.
+Xcode 27 has no Simulator.app. To press remote buttons, use a throwaway UI test
+target (XCUIRemote) in a scratch copy of the project, and read
+`hasFocus == true` from the element tree. Don't add the test target to the repo.
 
 ## Conventions
 
