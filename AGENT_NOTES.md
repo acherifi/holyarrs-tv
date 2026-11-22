@@ -84,6 +84,33 @@ Settings → Playback picks the app (`AppState.player`, default Jellyfin).
   the Jellyfin server must be added in Infuse as a Jellyfin share with "Include in
   Library" on. Otherwise Infuse shows a TMDB placeholder page with a Search button.
 
+On a title in the library, the play button replaces "In library" ("In library" is
+shown only if there is nothing to play). Owners and managers also get "Manage"
+(`ManageSheet` in TitlePage.swift): remove, keeping or deleting files, through
+`DELETE /titles/{id}?delete_files=true|false`. That endpoint is assumed and not yet
+checked against the server. Focus starts on Cancel.
+
+## Trailers (Netflix-style autoplay)
+
+tvOS has no web view, so YouTube can't play in the app. `trailers/` is a sidecar
+service (Python + yt-dlp, Docker) that downloads a trailer by YouTube id, caches
+the MP4 and serves it with Range support. It runs next to HolyArrs and doesn't
+modify it. See trailers/README.md.
+
+App side:
+- `Details.videos` (TMDB, from `/metadata`) → `trailerKey` (official Trailer, then
+  Trailer, then Teaser).
+- `Core/Trailers.swift` polls the sidecar until the file is ready.
+- In TitlePage, the hero shows an AVPlayerLayer over the backdrop. It starts 2 s after
+  the page opens, muted, and fades in on the first frames. It pauses (and the backdrop
+  comes back) when focus leaves the hero buttons, a sheet opens or the app goes to the
+  background. Play/Pause toggles the sound.
+- Settings → Trailers: address, optional token, autoplay on/off (`AppState`).
+- Autoplay off: a "Trailer" button in the hero plays it full screen with sound
+  (`TrailerPlayer`, AVPlayerViewController). It closes at the end or with Menu.
+- Gotcha: the async task must read only @State. An @Environment value such as
+  scenePhase keeps the value it had when the task started (inactive at launch).
+
 ## App icon
 
 `HolyArrsTV/Assets.xcassets` holds the layered tvOS icon (Back gradient, Middle

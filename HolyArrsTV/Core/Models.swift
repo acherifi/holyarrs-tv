@@ -219,7 +219,6 @@ struct Person: Codable, Hashable, Identifiable {
 }
 
 struct TMDBSeason: Codable, Hashable { var number: Int; var episode_count: Int?; var year: Int? }
-struct Video: Codable, Hashable { var key: String; var name: String?; var type: String? }
 
 struct Details: Codable {
     var tmdb_id: Flex
@@ -245,7 +244,19 @@ struct Details: Codable {
     var title_id: Int?
     var ask: AskBrief?
     var never_add: Bool?
+    var videos: [Video]?
+
+    /// The YouTube id to play: an official trailer first, then any trailer, then a teaser.
+    var trailerKey: String? {
+        let v = (videos ?? []).filter { ($0.site ?? "YouTube") == "YouTube" && !$0.key.isEmpty }
+        return (v.first { $0.type == "Trailer" && $0.official == true }
+            ?? v.first { $0.type == "Trailer" }
+            ?? v.first { $0.type == "Teaser" })?.key
+    }
 }
+
+/// A TMDB video, as HolyArrs passes it through.
+struct Video: Codable, Hashable { var key: String; var name: String?; var type: String?; var official: Bool?; var site: String? }
 
 struct Score: Codable, Hashable { var source: String; var value: Double; var max: Double? }
 struct Extras: Codable { var logo: String?; var backgrounds: [String]?; var scores: [Score]? }

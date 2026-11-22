@@ -1,0 +1,17 @@
+# Run next to HolyArrs. Then set Settings → Trailers → Address in the Apple TV app
+# to http://<this host>:8099
+services:
+  trailers:
+    build: .
+    container_name: holyarrs-trailers
+    restart: unless-stopped
+    ports:
+      - "8099:8099"
+    volumes:
+      - ./cache:/cache
+    environment:
+      TRAILERS_TTL_HOURS: "4"    # delete a trailer 4 h after it was last played
+      TRAILERS_MAX_GB: "10"
+      TRAILERS_HEIGHT: "1080"
+      # TRAILERS_TOKEN: "pick-a-long-random-string"   # then enter it in the app too
+      # TRAILERS_COOKIES: /cache/cookies.txt          # only if YouTube asks to sign in

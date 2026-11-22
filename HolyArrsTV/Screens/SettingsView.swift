@@ -39,7 +39,12 @@ struct SettingsView: View {
                           : "\"Open in Jellyfin\" opens the title in Swiftfin. Sign in to Jellyfin below once.") {
                         SegmentBar(options: Player.allCases.map { ($0, $0.label, nil) }, selection: $app.player)
                     }
-                    panel("Jellyfin", "\"Open in Jellyfin\" opens Swiftfin on this Apple TV. Sign in once with the same Jellyfin user you use in Swiftfin; only the user's id is kept.") {
+                    panel("Trailers", "Trailers play muted behind the title, Netflix-style, while you're on its buttons. Play/Pause turns the sound on. With autoplay off, a Trailer button plays it full screen instead. Needs the trailers service from the repo's trailers/ folder running next to HolyArrs.") {
+                        field(.trailersAddress)
+                        field(.trailersToken)
+                        SegmentBar(options: [(true, "Autoplay on", nil), (false, "Autoplay off", nil)], selection: $app.autoplayTrailers)
+                    }
+                    panel("Jellyfin","\"Open in Jellyfin\" opens Swiftfin on this Apple TV. Sign in once with the same Jellyfin user you use in Swiftfin; only the user's id is kept.") {
                         field(.jellyfinAddress)
                         field(.jellyfinUser)
                         field(.jellyfinPassword)
@@ -77,6 +82,8 @@ struct SettingsView: View {
         case .jellyfinAddress: $jfURL
         case .jellyfinUser: $jfUser
         case .jellyfinPassword: $jfPassword
+        case .trailersAddress: $app.trailersURL
+        case .trailersToken: $app.trailersToken
         }
     }
 
@@ -146,7 +153,7 @@ struct SettingsView: View {
 // MARK: Fields
 
 enum SettingsField: String, Identifiable {
-    case address, apiKey, jellyfinAddress, jellyfinUser, jellyfinPassword
+    case address, apiKey, jellyfinAddress, jellyfinUser, jellyfinPassword, trailersAddress, trailersToken
     var id: String { rawValue }
 
     var label: String {
@@ -156,6 +163,8 @@ enum SettingsField: String, Identifiable {
         case .jellyfinAddress: "Jellyfin address"
         case .jellyfinUser: "User name"
         case .jellyfinPassword: "Password"
+        case .trailersAddress: "Trailers address"
+        case .trailersToken: "Token"
         }
     }
     var prompt: String {
@@ -165,6 +174,8 @@ enum SettingsField: String, Identifiable {
         case .jellyfinAddress: "https://jellyfin.example.com"
         case .jellyfinUser: "Jellyfin user name"
         case .jellyfinPassword: "Jellyfin password"
+        case .trailersAddress: "http://192.168.1.10:8099"
+        case .trailersToken: "Optional"
         }
     }
     var help: String {
@@ -174,16 +185,18 @@ enum SettingsField: String, Identifiable {
         case .jellyfinAddress: "The address Swiftfin uses for your Jellyfin server."
         case .jellyfinUser: "The Jellyfin user you're signed in with in Swiftfin."
         case .jellyfinPassword: "Used once to sign in. Only the user's id is kept."
+        case .trailersAddress: "The trailers service's address, with http:// and the port (8099 by default). Leave empty to turn trailers off."
+        case .trailersToken: "Only if you set TRAILERS_TOKEN on the trailers service."
         }
     }
-    var secure: Bool { self == .apiKey || self == .jellyfinPassword }
-    var isURL: Bool { self == .address || self == .jellyfinAddress }
+    var secure: Bool { self == .apiKey || self == .jellyfinPassword || self == .trailersToken }
+    var isURL: Bool { self == .address || self == .jellyfinAddress || self == .trailersAddress }
 
     /// What the row shows: the value, a masked secret, or the placeholder.
     func display(_ value: String) -> String {
         if value.isEmpty { return prompt }
         switch self {
-        case .apiKey: return value.count > 8 ? "••••••••" + value.suffix(4) : "••••••••"
+        case .apiKey, .trailersToken: return value.count > 8 ? "••••••••" + value.suffix(4) : "••••••••"
         case .jellyfinPassword: return "••••••••"
         default: return value
         }

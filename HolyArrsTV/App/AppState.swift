@@ -43,6 +43,10 @@ final class AppState: ObservableObject {
     @AppStorage("jellyfinUserName") var jellyfinUserName = ""
     /// Which app the title page's play button hands off to.
     @AppStorage("player") var player: Player = .jellyfin
+    /// The trailers sidecar (trailers/ in the repo). Empty: no trailers.
+    @AppStorage("trailersURL") var trailersURL = ""
+    @AppStorage("trailersToken") var trailersToken = ""
+    @AppStorage("autoplayTrailers") var autoplayTrailers = true
 
     @Published var section: Section = .home
     @Published var paths: [Section: NavigationPath] = [:]

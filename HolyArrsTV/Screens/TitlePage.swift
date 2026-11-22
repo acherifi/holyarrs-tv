@@ -1,3 +1,4 @@
+import AVFoundation
 import SwiftUI
 
 /// `/title/{kind}/{tmdb}`: backdrop hero with logo, tagline and actions,
@@ -11,10 +12,23 @@ struct TitlePage: View {
     @State private var following = false
     @State private var error: String?
     @State private var adding = false
+    @State private var managing = false
     @State private var busy = false
     @State private var season = 1
     @State private var episodes: [Episode] = []
     @FocusState private var heroFocus: String?
+    /// Netflix-style trailer behind the hero: muted, plays while focus is in the hero.
+    @State private var trailer: AVPlayer?
+    @State private var trailerOn = false
+    @State private var trailerEnded = false
+    @State private var muted = true
+    /// The page opens on the hero, but `heroFocus` stays nil until focus first moves.
+    @State private var inHero = true
+    @State private var inBackground = false
+    /// Autoplay off: the Trailer button plays it full screen instead.
+    @State private var fullTrailer: URL?
+    @State private var loadingTrailer = false
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         ScrollView(.vertical) {
@@ -40,6 +54,26 @@ struct TitlePage: View {
         .task { await load() }
         .sheet(isPresented: $adding, onDismiss: { Task { await load() } }) {
             AddSheet(kind: kind, tmdb: tmdb, name: d?.name ?? "")
+        }
+        .task(id: d?.trailerKey) { await startTrailer() }
+        .onChange(of: heroFocus) { _, f in inHero = f != nil; syncTrailer() }
+        .onChange(of: adding) { syncTrailer() }
+        .onChange(of: managing) { syncTrailer() }
+        .onChange(of: scenePhase) { _, s in inBackground = s == .background; syncTrailer() }
+        .onDisappear { stopTrailer() }
+        .onPlayPauseCommand { if trailerOn { muted.toggle(); trailer?.isMuted = muted } }
+        .onReceive(NotificationCenter.default.publisher(for: AVPlayerItem.didPlayToEndTimeNotification)) { n in
+            if let item = n.object as? AVPlayerItem, item === trailer?.currentItem { trailerEnded = true; trailerOn = false }
+        }
+        .fullScreenCover(isPresented: Binding(get: { fullTrailer != nil }, set: { if !$0 { fullTrailer = nil } })) {
+            if let url = fullTrailer {
+                TrailerPlayer(url: url)
+                    .ignoresSafeArea()
+                    .onReceive(NotificationCenter.default.publisher(for: AVPlayerItem.didPlayToEndTimeNotification)) { _ in fullTrailer = nil }
+            }
+        }
+        .sheet(isPresented: $managing, onDismiss: { Task { await load() } }) {
+            if let d, let id = d.title_id { ManageSheet(kind: kind, titleID: id, name: d.name) }
         }
     }
 
@@ -77,6 +111,11 @@ struct TitlePage: View {
     func hero(_ d: Details) -> some View {
         ZStack(alignment: .bottomLeading) {
             RemoteImage(raw: extras?.backgrounds?.first ?? d.backdrop, size: "w1280", name: d.name)
+            if let trailer {
+                TrailerVideo(player: trailer)
+                    .opacity(trailerOn ? 1 : 0)
+                    .animation(.easeInOut(duration: 0.8), value: trailerOn)
+            }
             LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint: .center, endPoint: .bottom)
             LinearGradient(colors: [.black.opacity(0.6), .clear], startPoint: .leading, endPoint: .center)
             VStack(alignment: .leading, spacing: 22) {
@@ -95,6 +134,16 @@ struct TitlePage: View {
         }
         .frame(height: 900)
         .frame(maxWidth: .infinity)
+        .overlay(alignment: .bottomTrailing) {
+            if trailerOn {
+                Label(muted ? "Play/Pause for sound" : "Sound on", systemImage: muted ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                    .font(Typo.callout).foregroundStyle(.white.opacity(0.85))
+                    .padding(.horizontal, 18).padding(.vertical, 10)
+                    .background(Capsule().fill(.black.opacity(0.45)))
+                    .padding(40)
+                    .transition(.opacity)
+            }
+        }
         .clipShape(RoundedRectangle(cornerRadius: Theme.rPanel * 1.4, style: .continuous))
         .padding(.horizontal, Theme.gutter)
         .padding(.top, 50)
@@ -104,14 +153,20 @@ struct TitlePage: View {
         let manage = app.me?.canManage ?? app.demo
         HStack(spacing: 20) {
             if d.in_library == true {
-                Button { } label: { Label("In library", systemImage: "checkmark") }
-                    .buttonStyle(PillButtonStyle(kind: .primary)).focused($heroFocus, equals: "main")
+                // In the library: the play button takes the main spot.
                 if app.player == .infuse {
                     Button { Task { await app.playInInfuse(kind: kind, tmdb: d.tmdb_id.value) } } label: { Label("Play in Infuse", systemImage: "play.fill") }
-                        .buttonStyle(PillButtonStyle(kind: .glass)).focused($heroFocus, equals: "jf")
+                        .buttonStyle(PillButtonStyle(kind: .primary)).focused($heroFocus, equals: "main")
                 } else if let id = d.title_id, manage {
                     Button { Task { await app.openInJellyfin(titleID: id) } } label: { Label("Open in Jellyfin", systemImage: "play.fill") }
-                        .buttonStyle(PillButtonStyle(kind: .glass)).focused($heroFocus, equals: "jf")
+                        .buttonStyle(PillButtonStyle(kind: .primary)).focused($heroFocus, equals: "main")
+                } else {
+                    Button { } label: { Label("In library", systemImage: "checkmark") }
+                        .buttonStyle(PillButtonStyle(kind: .primary)).focused($heroFocus, equals: "main")
+                }
+                if d.title_id != nil, manage {
+                    Button { managing = true } label: { Label("Manage", systemImage: "slider.horizontal.3") }
+                        .buttonStyle(PillButtonStyle(kind: .glass)).focused($heroFocus, equals: "manage")
                 }
             } else if let ask = d.ask, ask.state != "turned_down" {
                 Button { } label: { Label(ask.state_label ?? "Asked", systemImage: "clock") }
@@ -122,13 +177,72 @@ struct TitlePage: View {
                 }
                 .buttonStyle(PillButtonStyle(kind: .primary)).focused($heroFocus, equals: "main")
             }
+            if !app.autoplayTrailers, !app.trailersURL.isEmpty, d.trailerKey != nil {
+                Button { Task { await playTrailer() } } label: {
+                    if loadingTrailer { ProgressView() } else { Label("Trailer", systemImage: "film") }
+                }
+                .buttonStyle(PillButtonStyle(kind: .glass)).disabled(loadingTrailer).focused($heroFocus, equals: "trailer")
+            }
             Button { Task { await toggleFollow(d) } } label: {
                 Label(following ? "Following" : "Follow", systemImage: following ? "bell.fill" : "bell")
             }
-            .buttonStyle(PillButtonStyle(kind: .glass)).disabled(busy)
+            .buttonStyle(PillButtonStyle(kind: .glass)).disabled(busy).focused($heroFocus, equals: "follow")
         }
         .focusSection()
         .defaultFocus($heroFocus, "main")
+    }
+
+    // MARK: Trailer
+
+    /// Plays only while focus is on the hero's buttons, no sheet is open and the app
+    /// is in front; leaving the hero pauses it and shows the backdrop again.
+    /// Only @State here: the async task reads them live, while an @Environment value
+    /// would stay what it was when the task started (inactive at launch).
+    var trailerShouldPlay: Bool { inHero && !adding && !managing && !inBackground && !trailerEnded }
+
+    func startTrailer() async {
+        stopTrailer()
+        guard app.autoplayTrailers, !app.trailersURL.isEmpty, let key = d?.trailerKey else { return }
+        try? await Task.sleep(for: .seconds(2))  // let the page settle first, as Netflix does
+        guard !Task.isCancelled,
+              let url = await Trailers.resolve(base: app.trailersURL, token: app.trailersToken, key: key),
+              !Task.isCancelled else { return }
+        let p = AVPlayer(url: url)
+        p.isMuted = true
+        muted = true
+        trailerEnded = false
+        trailer = p
+        guard trailerShouldPlay else { return }  // focus left while it downloaded: start when it's back
+        p.play()
+        // Fade in on the first frames, not before, so the backdrop never flashes black.
+        for _ in 0..<100 where p.timeControlStatus != .playing {
+            try? await Task.sleep(for: .milliseconds(200))
+            if Task.isCancelled { return }
+        }
+        if p.timeControlStatus == .playing && trailerShouldPlay { trailerOn = true }
+    }
+
+    /// The Trailer button: waits for the trailers service (it may still be downloading).
+    func playTrailer() async {
+        guard let key = d?.trailerKey else { return }
+        loadingTrailer = true
+        defer { loadingTrailer = false }
+        if let url = await Trailers.resolve(base: app.trailersURL, token: app.trailersToken, key: key) {
+            fullTrailer = url
+        } else {
+            app.show("The trailer isn't available. Check Settings → Trailers.")
+        }
+    }
+
+    func syncTrailer() {
+        guard let p = trailer else { return }
+        if trailerShouldPlay { p.play(); trailerOn = true } else { p.pause(); trailerOn = false }
+    }
+
+    func stopTrailer() {
+        trailer?.pause()
+        trailer = nil
+        trailerOn = false
     }
 
     func toggleFollow(_ d: Details) async {
@@ -284,5 +398,59 @@ struct EpisodeCard: View {
             }
             .padding(60).frame(maxWidth: 1100)
         }
+    }
+}
+
+/// Owners and managers: remove a title from the library, keeping or deleting its files.
+/// Focus starts on Cancel so a stray click removes nothing.
+struct ManageSheet: View {
+    @EnvironmentObject var app: AppState
+    @Environment(\.dismiss) private var dismiss
+    let kind: Kind
+    let titleID: Int
+    let name: String
+    @State private var sending = false
+    @State private var error: String?
+    @FocusState private var focus: String?
+
+    var noun: String { kind == .show ? "series" : "movie" }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 34) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Manage").font(Typo.title1).foregroundStyle(Theme.text)
+                Text(name).font(Typo.body).foregroundStyle(Theme.textMuted)
+            }
+            Text("Remove this \(noun) from HolyArrs. Keep the files to leave it playable in Jellyfin, or delete them to free the space.")
+                .font(Typo.body).foregroundStyle(Theme.textMuted)
+            if let error { Text(error).font(Typo.callout).foregroundStyle(Theme.fail) }
+            HStack(spacing: 20) {
+                Button { Task { await remove(deleteFiles: false) } } label: { Label("Remove, keep files", systemImage: "minus.circle") }
+                    .buttonStyle(PillButtonStyle(kind: .plain))
+                Button { Task { await remove(deleteFiles: true) } } label: { Label("Remove and delete files", systemImage: "trash") }
+                    .buttonStyle(PillButtonStyle(kind: .plain))
+                Spacer()
+                if sending { ProgressView() }
+                Button("Cancel") { dismiss() }
+                    .buttonStyle(PillButtonStyle(kind: .accent)).focused($focus, equals: "cancel")
+            }
+            .disabled(sending)
+            .focusSection()
+        }
+        .padding(60)
+        .frame(width: 1300)
+        .background(RoundedRectangle(cornerRadius: Theme.rModal, style: .continuous).fill(Theme.surface1))
+        .defaultFocus($focus, "cancel")
+    }
+
+    func remove(deleteFiles: Bool) async {
+        sending = true
+        defer { sending = false }
+        do {
+            try await app.api.delete("/titles/\(titleID)?delete_files=\(deleteFiles)")
+            app.show(deleteFiles ? "Removed \(name) and deleted its files." : "Removed \(name) from your library.")
+            app.libraryVersion += 1
+            dismiss()
+        } catch { self.error = error.localizedDescription }
     }
 }
