@@ -1,0 +1,380 @@
+Command line invocation:
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/xcodebuild -project HolyArrsTV.xcodeproj -scheme HolyArrsTV -destination generic/platform=tvOS -configuration Release -derivedDataPath build-dev CODE_SIGNING_ALLOWED=NO build
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'HolyArrsTV' in project 'HolyArrsTV' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: c18ddcfc3ef581654117b56030189408
+Build description path: /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/XCBuildData/c18ddcfc3ef581654117b56030189408.xcbuilddata
+CreateBuildDirectory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV.xcodeproj
+    builtin-create-build-directory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products
+
+ClangStatCache /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/SDKStatCaches.noindex/appletvos18.5-22L572-ad3d6c69466c977a8acd494204ad2e24.sdkstatcache
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV.xcodeproj
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk -o /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/SDKStatCaches.noindex/appletvos18.5-22L572-ad3d6c69466c977a8acd494204ad2e24.sdkstatcache
+
+CreateBuildDirectory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV.xcodeproj
+    builtin-create-build-directory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV-856651b76c44c32a49f50e37244ce453-VFS-appletvos/all-product-headers.yaml
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV.xcodeproj
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV-856651b76c44c32a49f50e37244ce453-VFS-appletvos/all-product-headers.yaml
+
+CreateBuildDirectory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV.xcodeproj
+    builtin-create-build-directory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos
+
+CreateBuildDirectory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/EagerLinkingTBDs/Release-appletvos
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV.xcodeproj
+    builtin-create-build-directory /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/EagerLinkingTBDs/Release-appletvos
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV_const_extract_protocols.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV-OutputFileMap.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftFileList (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftConstValuesFileList (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.LinkFileList (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.hmap (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.hmap
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.DependencyStaticMetadataFileList (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.DependencyMetadataFileList (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-project-headers.hmap (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-project-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-own-target-headers.hmap (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-generated-files.hmap (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-generated-files.hmap
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-target-headers.hmap (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-non-framework-target-headers.hmap (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    write-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-non-framework-target-headers.hmap
+
+MkDir /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /bin/mkdir -p /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+MkDir /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/thinned (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /bin/mkdir -p /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/thinned
+
+MkDir /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/unthinned (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /bin/mkdir -p /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/unthinned
+
+GenerateAssetSymbols /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Assets.xcassets (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Assets.xcassets --compile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_dependencies --output-partial-info-plist /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist --app-icon App\ Icon\ \&\ Top\ Shelf\ Image --launch-image LaunchImage --compress-pngs --enable-on-demand-resources YES --development-region en --leaderboard-identifier-prefix HolyArrs.game-center.leaderboard. --leaderboard-set-identifier-prefix HolyArrs.game-center.leaderboard-set. --target-device tv --minimum-deployment-target 17.0 --platform appletvos --bundle-identifier io.holyarrs.tv.app --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_lookup_term_alien.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_lookup_term_alien.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_lookup_term_alien.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_grid_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_grid_1.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_grid_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_63_follow.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_follow.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_follow.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_63_episodes_season_4.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_4.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_4.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_63_episodes_season_3.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_3.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_3.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_63_episodes_season_2.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_2.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_2.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_63_episodes_season_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_1.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63_episodes_season_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_titles_63.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_titles_63.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_shows_lookup_term_alien.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_shows_lookup_term_alien.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_shows_lookup_term_alien.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_settings_title_defaults.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_settings_title_defaults.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_settings_title_defaults.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_pick_rules.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_pick_rules.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_pick_rules.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_people_search_q_alien_page_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_people_search_q_alien_page_1.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_people_search_q_alien_page_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_people_182287_role_all_sort_popular_page_size_40.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_people_182287_role_all_sort_popular_page_size_40.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_people_182287_role_all_sort_popular_page_size_40.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_metadata_show_424_seasons_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_show_424_seasons_1.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_show_424_seasons_1.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_metadata_show_424.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_show_424.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_show_424.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_metadata_movie_1218925_follow.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_movie_1218925_follow.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_movie_1218925_follow.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_metadata_movie_1218925.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_movie_1218925.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_metadata_movie_1218925.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_media_servers_watch_links_title_63.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_media_servers_watch_links_title_63.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_media_servers_watch_links_title_63.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_library_folders.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_library_folders.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_library_folders.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_home.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_home.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_home.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_health.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_health.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_health.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_extras_show_424.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_extras_show_424.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_extras_show_424.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_extras_movie_1218925.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_extras_movie_1218925.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_extras_movie_1218925.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_tail_type_all_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_tail_type_all_page_0.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_tail_type_all_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_new_type_shows_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_new_type_shows_page_0.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_new_type_shows_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_new_type_movies_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_new_type_movies_page_0.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_new_type_movies_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_new_type_all_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_new_type_all_page_0.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_new_type_all_page_0.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_head_type_shows.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_head_type_shows.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_head_type_shows.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_head_type_movies.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_head_type_movies.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_head_type_movies.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_explore_head_type_all.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_head_type_all.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_explore_head_type_all.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_downloads_view_limit_100.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_downloads_view_limit_100.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_downloads_view_limit_100.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_calendar.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_calendar.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_calendar.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_auth_me.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_auth_me.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_auth_me.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/demo_asks_limit_200.json /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_asks_limit_200.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Demo/demo_asks_limit_200.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/OFL.txt /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/OFL.txt (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/OFL.txt /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Geist-SemiBold.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-SemiBold.ttf (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-SemiBold.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Geist-Regular.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-Regular.ttf (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-Regular.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Geist-Medium.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-Medium.ttf (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-Medium.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CpResource /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Geist-Bold.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-Bold.ttf (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Resources/Fonts/Geist-Bold.ttf /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+CompileAssetCatalogVariant thinned /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Assets.xcassets (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Assets.xcassets --compile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist_thinned --app-icon App\ Icon\ \&\ Top\ Shelf\ Image --launch-image LaunchImage --compress-pngs --enable-on-demand-resources YES --development-region en --leaderboard-identifier-prefix HolyArrs.game-center.leaderboard. --leaderboard-set-identifier-prefix HolyArrs.game-center.leaderboard-set. --target-device tv --minimum-deployment-target 17.0 --platform appletvos
+/* com.apple.actool.compilation-results */
+/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist_thinned
+/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/thinned/Assets.car
+
+
+SwiftDriver HolyArrsTV normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-SwiftDriver -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HolyArrs -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk -target arm64-apple-tvos17.0 -g -module-cache-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -F /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/SDKStatCaches.noindex/appletvos18.5-22L572-ad3d6c69466c977a8acd494204ad2e24.sdkstatcache -output-file-map /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-generated-files.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-own-target-headers.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-project-headers.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/include -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs-Swift.h -working-directory /Users/runner/work/holyarrs-tv/holyarrs-tv -no-emit-module-separately-wmo
+
+SwiftDriver\ Compilation HolyArrsTV normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HolyArrs -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk -target arm64-apple-tvos17.0 -g -module-cache-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -F /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/SDKStatCaches.noindex/appletvos18.5-22L572-ad3d6c69466c977a8acd494204ad2e24.sdkstatcache -output-file-map /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-generated-files.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-own-target-headers.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-project-headers.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/include -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs-Swift.h -working-directory /Users/runner/work/holyarrs-tv/holyarrs-tv -no-emit-module-separately-wmo
+
+SwiftCompile normal arm64 Compiling\ API.swift,\ ActivityViews.swift,\ AddSheet.swift,\ AppState.swift,\ Components.swift,\ ExploreView.swift,\ HolyArrsApp.swift,\ HomeView.swift,\ LibraryView.swift,\ Models.swift,\ SearchPage.swift,\ SettingsView.swift,\ Shell.swift,\ Theme.swift,\ TitlePage.swift,\ Trailers.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Core/API.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/ActivityViews.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/AddSheet.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/App/AppState.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/UI/Components.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/ExploreView.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/App/HolyArrsApp.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/HomeView.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/LibraryView.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Core/Models.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/SearchPage.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/SettingsView.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/App/Shell.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Core/Theme.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Screens/TitlePage.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Core/Trailers.swift /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'HolyArrsTV' from project 'HolyArrsTV')
+CompileSwift normal arm64 (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    
+
+LinkAssetCatalog /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Assets.xcassets (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-linkAssetCatalog --thinned /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/thinned --thinned-dependencies /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist_unthinned --output /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app --plist-output /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Assets.car (in target 'HolyArrsTV' from project 'HolyArrsTV')
+
+ProcessInfoPlistFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Info.plist /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Info.plist (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-infoPlistUtility /Users/runner/work/holyarrs-tv/holyarrs-tv/HolyArrsTV/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/PkgInfo -expandbuildsettings -format binary -platform appletvos -additionalcontentfile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/assetcatalog_generated_info.plist -requiredArchitecture arm64 -o /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Info.plist
+
+SwiftDriverJobDiscovery normal arm64 Compiling API.swift, ActivityViews.swift, AddSheet.swift, AppState.swift, Components.swift, ExploreView.swift, HolyArrsApp.swift, HomeView.swift, LibraryView.swift, Models.swift, SearchPage.swift, SettingsView.swift, Shell.swift, Theme.swift, TitlePage.swift, Trailers.swift, GeneratedAssetSymbols.swift (in target 'HolyArrsTV' from project 'HolyArrsTV')
+
+SwiftDriver\ Compilation\ Requirements HolyArrsTV normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HolyArrs -O -whole-module-optimization -enforce-exclusivity\=checked @/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk -target arm64-apple-tvos17.0 -g -module-cache-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -F /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/SDKStatCaches.noindex/appletvos18.5-22L572-ad3d6c69466c977a8acd494204ad2e24.sdkstatcache -output-file-map /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrsTV_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-generated-files.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-own-target-headers.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs-project-headers.hmap -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/include -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs-Swift.h -working-directory /Users/runner/work/holyarrs-tv/holyarrs-tv -no-emit-module-separately-wmo
+
+SwiftMergeGeneratedHeaders /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/HolyArrs-Swift.h /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs-Swift.h (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs-Swift.h -o /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/DerivedSources/HolyArrs-Swift.h
+
+Copy /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/arm64-apple-tvos.swiftmodule /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftmodule (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftmodule /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/arm64-apple-tvos.swiftmodule
+
+Copy /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/arm64-apple-tvos.swiftdoc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftdoc (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftdoc /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/arm64-apple-tvos.swiftdoc
+
+Copy /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/arm64-apple-tvos.abi.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.abi.json (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.abi.json /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/arm64-apple-tvos.abi.json
+
+Copy /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/Project/arm64-apple-tvos.swiftsourceinfo /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftsourceinfo (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftsourceinfo /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.swiftmodule/Project/arm64-apple-tvos.swiftsourceinfo
+
+Ld /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/HolyArrs normal (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-tvos17.0 -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk -Os -L/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/EagerLinkingTBDs/Release-appletvos -L/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -F/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/EagerLinkingTBDs/Release-appletvos -F/Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos -filelist /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.LinkFileList -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs_lto.o -Xlinker -dependency_info -Xlinker /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.swiftmodule -o /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/HolyArrs
+
+CopySwiftLibs /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/HolyArrs --scan-folder /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Frameworks --scan-folder /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/PlugIns --scan-folder /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/SystemExtensions --scan-folder /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Extensions --platform appletvos --toolchain /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+GenerateDSYMFile /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app.dSYM /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/HolyArrs (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/HolyArrs -o /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app.dSYM
+
+ExtractAppIntentsMetadata (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name HolyArrs --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.5.sdk --xcode-version 16F6 --platform-family tvOS --deployment-target 17.0 --bundle-identifier io.holyarrs.tv.app --output /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app --target-triple arm64-apple-tvos17.0 --binary-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app/HolyArrs --dependency-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs_dependency_info.dat --stringsdata-file /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftFileList --metadata-file-list /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/HolyArrs.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Intermediates.noindex/HolyArrsTV.build/Release-appletvos/HolyArrsTV.build/Objects-normal/arm64/HolyArrs.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-22 09:12:38.463 appintentsmetadataprocessor[4089:15239] Starting appintentsmetadataprocessor export
+2026-11-22 09:12:38.469 appintentsmetadataprocessor[4089:15239] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+RegisterExecutionPolicyException /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-RegisterExecutionPolicyException /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+Validate /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    builtin-validationUtility /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app -infoplist-subpath Info.plist
+
+Touch /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app (in target 'HolyArrsTV' from project 'HolyArrsTV')
+    cd /Users/runner/work/holyarrs-tv/holyarrs-tv
+    /usr/bin/touch -c /Users/runner/work/holyarrs-tv/holyarrs-tv/build-dev/Build/Products/Release-appletvos/HolyArrs.app
+
+note: Disabling previews because SWIFT_VERSION is set and SWIFT_OPTIMIZATION_LEVEL=-O, expected -Onone (in target 'HolyArrsTV' from project 'HolyArrsTV')
+** BUILD SUCCEEDED **
+
